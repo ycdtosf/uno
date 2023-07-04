@@ -1,9 +1,8 @@
 import { LightningElement, api } from 'lwc';
-//import { getRelatedListRecords } from 'lightning/uiRelatedListApi';
 
 export default class UnoHand extends LightningElement {
 
-    @api pileId;
+    @api gameCards;
 
     /*
     @wire(getRelatedListRecords, {

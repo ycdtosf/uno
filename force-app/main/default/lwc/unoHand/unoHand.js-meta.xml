@@ -8,7 +8,7 @@
     </targets>
     <targetConfigs>
         <targetConfig targets="lightning__FlowScreen">
-            <property name="pileId" type="String" label="Pile Id" />
+            <property name="gameCards" type="@salesforce/schema/GameCard__c[]" label="Player's Hand" />
         </targetConfig>
     </targetConfigs>
 </LightningComponentBundle>

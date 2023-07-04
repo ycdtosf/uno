@@ -5,7 +5,7 @@
         <name>Turn_Status</name>
         <label>Turn Status</label>
         <locationX>182</locationX>
-        <locationY>242</locationY>
+        <locationY>350</locationY>
         <defaultConnector>
             <targetReference>s1</targetReference>
         </defaultConnector>
@@ -21,7 +21,7 @@
                 </rightValue>
             </conditions>
             <connector>
-                <targetReference>s3</targetReference>
+                <targetReference>s2</targetReference>
             </connector>
             <label>Drawn</label>
         </rules>
@@ -54,13 +54,34 @@
     </processMetadataValues>
     <processType>Flow</processType>
     <recordLookups>
+        <name>Get_Player_Hand_Game_Cards</name>
+        <label>Get Player Hand Game Cards</label>
+        <locationX>182</locationX>
+        <locationY>242</locationY>
+        <assignNullValuesIfNoRecordsFound>false</assignNullValuesIfNoRecordsFound>
+        <connector>
+            <targetReference>Turn_Status</targetReference>
+        </connector>
+        <filterLogic>and</filterLogic>
+        <filters>
+            <field>Pile__c</field>
+            <operator>EqualTo</operator>
+            <value>
+                <elementReference>Get_Turn.Player__r.Hand__c</elementReference>
+            </value>
+        </filters>
+        <getFirstRecordOnly>false</getFirstRecordOnly>
+        <object>GameCard__c</object>
+        <storeOutputAutomatically>true</storeOutputAutomatically>
+    </recordLookups>
+    <recordLookups>
         <name>Get_Turn</name>
         <label>Get Turn</label>
         <locationX>182</locationX>
         <locationY>134</locationY>
         <assignNullValuesIfNoRecordsFound>false</assignNullValuesIfNoRecordsFound>
         <connector>
-            <targetReference>Turn_Status</targetReference>
+            <targetReference>Get_Player_Hand_Game_Cards</targetReference>
         </connector>
         <filterLogic>and</filterLogic>
         <filters>
@@ -79,7 +100,7 @@
         <name>s1</name>
         <label>s1</label>
         <locationX>314</locationX>
-        <locationY>350</locationY>
+        <locationY>458</locationY>
         <allowBack>true</allowBack>
         <allowFinish>true</allowFinish>
         <allowPause>true</allowPause>
@@ -104,35 +125,14 @@
             <extensionName>c:unoHand</extensionName>
             <fieldType>ComponentInstance</fieldType>
             <inputParameters>
-                <name>pileId</name>
+                <name>gameCards</name>
                 <value>
-                    <stringValue>{!formulaPileId}</stringValue>
+                    <elementReference>Get_Player_Hand_Game_Cards</elementReference>
                 </value>
             </inputParameters>
             <inputsOnNextNavToAssocScrn>UseStoredValues</inputsOnNextNavToAssocScrn>
             <isRequired>true</isRequired>
             <storeOutputAutomatically>true</storeOutputAutomatically>
-        </fields>
-        <showFooter>true</showFooter>
-        <showHeader>true</showHeader>
-    </screens>
-    <screens>
-        <name>s3</name>
-        <label>s3</label>
-        <locationX>50</locationX>
-        <locationY>350</locationY>
-        <allowBack>true</allowBack>
-        <allowFinish>true</allowFinish>
-        <allowPause>true</allowPause>
-        <connector>
-            <targetReference>s2</targetReference>
-        </connector>
-        <fields>
-            <name>testText</name>
-            <dataType>String</dataType>
-            <fieldText>testText</fieldText>
-            <fieldType>InputField</fieldType>
-            <isRequired>false</isRequired>
         </fields>
         <showFooter>true</showFooter>
         <showHeader>true</showHeader>
@@ -144,7 +144,7 @@
             <targetReference>Get_Turn</targetReference>
         </connector>
     </start>
-    <status>InvalidDraft</status>
+    <status>Draft</status>
     <variables>
         <name>recordId</name>
         <dataType>String</dataType>

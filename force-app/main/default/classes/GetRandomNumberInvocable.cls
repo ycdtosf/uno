@@ -3,5 +3,5 @@ public class GetRandomNumberInvocable {
     public static List<Decimal> execute() {
         return new List<Decimal> { Math.random() };  
     }
-
+ 
 }
