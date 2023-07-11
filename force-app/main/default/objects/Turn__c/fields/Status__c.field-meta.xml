@@ -25,6 +25,21 @@
                 <default>false</default>
                 <label>Done</label>
             </value>
+            <value>
+                <fullName>Skip</fullName>
+                <default>false</default>
+                <label>Skip</label>
+            </value>
+            <value>
+                <fullName>Draw Two</fullName>
+                <default>false</default>
+                <label>Draw Two</label>
+            </value>
+            <value>
+                <fullName>Draw Four</fullName>
+                <default>false</default>
+                <label>Draw Four</label>
+            </value>
         </valueSetDefinition>
     </valueSet>
 </CustomField>

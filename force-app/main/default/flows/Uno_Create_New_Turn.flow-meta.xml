@@ -13,6 +13,13 @@
                 <numberValue>0.0</numberValue>
             </value>
         </assignmentItems>
+        <assignmentItems>
+            <assignToReference>newTurn.Status__c</assignToReference>
+            <operator>Assign</operator>
+            <value>
+                <stringValue>Skip</stringValue>
+            </value>
+        </assignmentItems>
         <connector>
             <targetReference>Draw_Count_Reached</targetReference>
         </connector>
@@ -27,6 +34,13 @@
             <operator>Assign</operator>
             <value>
                 <numberValue>1.0</numberValue>
+            </value>
+        </assignmentItems>
+        <assignmentItems>
+            <assignToReference>newTurn.Status__c</assignToReference>
+            <operator>Assign</operator>
+            <value>
+                <stringValue>Drawn</stringValue>
             </value>
         </assignmentItems>
         <connector>
@@ -45,6 +59,13 @@
                 <numberValue>2.0</numberValue>
             </value>
         </assignmentItems>
+        <assignmentItems>
+            <assignToReference>newTurn.Status__c</assignToReference>
+            <operator>Assign</operator>
+            <value>
+                <stringValue>Draw Two</stringValue>
+            </value>
+        </assignmentItems>
         <connector>
             <targetReference>Draw_Count_Reached</targetReference>
         </connector>
@@ -59,6 +80,13 @@
             <operator>Assign</operator>
             <value>
                 <numberValue>4.0</numberValue>
+            </value>
+        </assignmentItems>
+        <assignmentItems>
+            <assignToReference>newTurn.Status__c</assignToReference>
+            <operator>Assign</operator>
+            <value>
+                <stringValue>Draw Four</stringValue>
             </value>
         </assignmentItems>
         <connector>

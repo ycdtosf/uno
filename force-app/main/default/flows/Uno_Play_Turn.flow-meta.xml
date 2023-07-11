@@ -134,7 +134,25 @@
             <isRequired>true</isRequired>
             <storeOutputAutomatically>true</storeOutputAutomatically>
         </fields>
-        <showFooter>true</showFooter>
+        <fields>
+            <name>selectedGameCardIdField</name>
+            <dataType>String</dataType>
+            <defaultValue>
+                <elementReference>unoHand.selectedGameCardId</elementReference>
+            </defaultValue>
+            <fieldText>Selected Game Card Id</fieldText>
+            <fieldType>InputField</fieldType>
+            <isRequired>false</isRequired>
+        </fields>
+        <fields>
+            <name>unoTurnFooter</name>
+            <extensionName>c:unoTurnFooter</extensionName>
+            <fieldType>ComponentInstance</fieldType>
+            <inputsOnNextNavToAssocScrn>UseStoredValues</inputsOnNextNavToAssocScrn>
+            <isRequired>true</isRequired>
+            <storeOutputAutomatically>true</storeOutputAutomatically>
+        </fields>
+        <showFooter>false</showFooter>
         <showHeader>true</showHeader>
     </screens>
     <start>

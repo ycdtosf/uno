@@ -4,6 +4,7 @@ import { getRecord } from 'lightning/uiRecordApi';
 export default class UnoCard extends LightningElement {
 
     @api gameCard;
+    card;
 
     get cardId() {
         return this.gameCard.Card__c;
@@ -14,6 +15,20 @@ export default class UnoCard extends LightningElement {
     }
 
     @wire(getRecord, { recordId: '$cardId', layoutTypes: ['Full'] })
-    card;
+    wiredCard({ error, data }) {
+        if (data) {
+            this.card = data;
+        } else if (error) {
+            console.log(JSON.stringify(error));
+        }
+    };
+
+    handleClick(e) {
+        const selectedEvent = new CustomEvent('selected', { detail: {
+            gameCard : this.gameCard,
+            card : this.card
+        } });
+        this.dispatchEvent(selectedEvent);
+    }
 
 }

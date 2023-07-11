@@ -1,3 +1,7 @@
 <template>
-    <template lwc:if={card}>{card.data.apiName}</template>
+    <template lwc:if={card}>
+        <div class="slds-box" onclick={handleClick}>
+            <div>{card.fields.Name.value} / {card.fields.Value__c.value}</div>
+        </div>
+    </template>
 </template> 

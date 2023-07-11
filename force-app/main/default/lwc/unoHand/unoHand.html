@@ -1,7 +1,11 @@
 <template>
     <template lwc:if={gameCards}>
-        <template for:each={gameCards} for:item="gameCard">
-            <c-uno-card key={gameCard.Id} game-card={gameCard}></c-uno-card>
-        </template>
+        <div class="slds-grid slds-wrap">
+            <template for:each={gameCards} for:item="gameCard">
+                <div key={gameCard.Id} class="slds-col slds-size_1-of-4">
+                    <c-uno-card onselected={handleGameCardSelected} game-card={gameCard}></c-uno-card>
+                </div>
+            </template>
+        </div>
     </template>
 </template>

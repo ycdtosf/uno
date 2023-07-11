@@ -1,8 +1,43 @@
-import { LightningElement, api } from 'lwc';
+import { LightningElement, api,track } from 'lwc';
+import { FlowAttributeChangeEvent } from 'lightning/flowSupport';
 
 export default class UnoHand extends LightningElement {
 
+    @track _selectedGameCardId;
+    @track _selectedGameCard;
+    @track _selectedCard;
+
     @api gameCards;
+    @api
+    set selectedGameCardId(value) {
+        if (value) {
+            this._selectedGameCardId = value;
+        }
+    };
+    get selectedGameCardId() {
+        return this._selectedGameCardId;
+    }
+
+    @api
+    set selectedGameCard(value) {
+        if (value) {
+            this._selectedGameCard = value;
+        }
+    };
+    get selectedGameCard() {
+        return this._selectedGameCard;
+    }
+
+    @api
+    set selectedCard(value) {
+        if (value) {
+            this._selectedCard = value;
+        }
+    };
+    get selectedCard() {
+        return this._selectedCard;
+    }
+    
 
     /*
     @wire(getRelatedListRecords, {
@@ -11,5 +46,13 @@ export default class UnoHand extends LightningElement {
         fields: ['GameCard__c.Name','GameCard__c.Id']
     })
     gameCards;*/
+
+    handleGameCardSelected(e) {
+        
+        this.dispatchEvent(new FlowAttributeChangeEvent('selectedGameCard', e.detail.gameCard));
+        this.dispatchEvent(new FlowAttributeChangeEvent('selectedCard', e.detail.card));
+
+    }
+
 
 }

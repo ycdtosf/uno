@@ -1,3 +1,9 @@
+# Next Week!!!
+
+- style Uno Card
+- pass selectedGameCard / selectedCard to footer to react
+- call next turn
+
 # Backlog
 
 > Game Object - Umbrella for Players, Cards, Rules, etc...
