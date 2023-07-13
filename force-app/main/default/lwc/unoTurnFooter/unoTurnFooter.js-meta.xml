@@ -5,4 +5,11 @@
     <targets>
         <target>lightning__FlowScreen</target>
     </targets>
+    <targetConfigs>
+        <targetConfig targets="lightning__FlowScreen">
+            <property name="selectedGameCard" type="@salesforce/schema/GameCard__c" label="Selected Game Card" />
+            <property name="selectedCard" type="@salesforce/schema/Card__c" label="Selected Card" />
+            <property name="selectedAction" type="String" label="Selected Action" />
+        </targetConfig>
+    </targetConfigs>
 </LightningComponentBundle>

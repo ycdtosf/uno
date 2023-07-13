@@ -10,8 +10,7 @@
         <targetConfig targets="lightning__FlowScreen">
             <property name="gameCards" type="@salesforce/schema/GameCard__c[]" label="Player's Hand" />
             <property name="selectedGameCard" type="@salesforce/schema/GameCard__c" label="Selected Game Card" />
-            <property name="selectedCard" type="@salesforce/schema/GameCard__c" label="Selected Card" />
-            <property name="selectedGameCardId" label="Selected Game Card Id" type="String" />
+            <property name="selectedCard" type="@salesforce/schema/Card__c" label="Selected Card" />
         </targetConfig>
     </targetConfigs>
 </LightningComponentBundle>

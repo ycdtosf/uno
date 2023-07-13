@@ -1,0 +1,14 @@
+:host {
+
+    --uno-card-color: black;
+    --uno-card-contrast-color: white;
+
+    --slds-c-card-color-background: var(--uno-card-color);
+    --slds-c-card-text-color: var(--uno-card-contrast-color);
+
+}
+
+lightning-card div {
+    height: 150px;
+    font-size: 2rem;
+}

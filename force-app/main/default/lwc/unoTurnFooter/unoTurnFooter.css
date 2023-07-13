@@ -1,0 +1,12 @@
+:host {
+
+    --uno-color: black;
+    --uno-contrast-color: white;
+
+    --slds-c-button-brand-color-background: var(--uno-color);
+    --slds-c-button-brand-color-background-hover: var(--uno-color);
+    --slds-c-button-brand-color-border: var(--uno-color);
+    --slds-c-button-brand-color-border-hover: var(--uno-color);
+    --slds-c-button-brand-text-color: var(--uno-contrast-color);
+
+}

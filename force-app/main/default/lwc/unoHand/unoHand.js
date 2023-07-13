@@ -3,20 +3,11 @@ import { FlowAttributeChangeEvent } from 'lightning/flowSupport';
 
 export default class UnoHand extends LightningElement {
 
-    @track _selectedGameCardId;
     @track _selectedGameCard;
     @track _selectedCard;
 
     @api gameCards;
-    @api
-    set selectedGameCardId(value) {
-        if (value) {
-            this._selectedGameCardId = value;
-        }
-    };
-    get selectedGameCardId() {
-        return this._selectedGameCardId;
-    }
+    
 
     @api
     set selectedGameCard(value) {
