@@ -1,9 +1,17 @@
 <template>
-    <template lwc:if={gameCards}>
+    <template lwc:if={playerGameCards}>
         <div class="slds-grid slds-wrap slds-gutters">
-            <template for:each={gameCards} for:item="gameCard">
-                <div key={gameCard.Id} class="slds-col slds-size_1-of-6">
-                    <c-uno-card onselected={handleGameCardSelected} game-card={gameCard}></c-uno-card>
+            <template for:each={playerGameCards} for:item="playerGameCard">
+                <div key={playerGameCard.Id} class="slds-col slds-size_1-of-6">
+                    <c-uno-card 
+                        onselected={handleGameCardSelected} 
+                        oncardloaded={handleCardLoaded} 
+                        game-card={playerGameCard} 
+                        top-game-card={topGameCard} 
+                        top-card={topCard} 
+                        top-color={topColor}
+                    >
+                    </c-uno-card>
                 </div>
             </template>
         </div>

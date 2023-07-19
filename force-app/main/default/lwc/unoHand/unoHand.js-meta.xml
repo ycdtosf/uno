@@ -4,13 +4,17 @@
     <isExposed>true</isExposed>
     <masterLabel>Uno Hand</masterLabel>
     <targets>
-        <target>lightning__FlowScreen</target>
+        <target>lightning__FlowScreen</target> 
     </targets>
     <targetConfigs>
         <targetConfig targets="lightning__FlowScreen">
-            <property name="gameCards" type="@salesforce/schema/GameCard__c[]" label="Player's Hand" />
-            <property name="selectedGameCard" type="@salesforce/schema/GameCard__c" label="Selected Game Card" />
-            <property name="selectedCard" type="@salesforce/schema/Card__c" label="Selected Card" />
+            <property name="playerGameCards" type="@salesforce/schema/GameCard__c[]" label="Player's Hand" role="inputOnly" />
+            <property name="topGameCard" type="@salesforce/schema/GameCard__c" label="Top Game Card in Discard Pile" role="inputOnly" />
+            <property name="topCard" type="@salesforce/schema/Card__c" label="Top Game Card's Card" role="inputOnly" />
+            <property name="topColor" type="String" label="Color of top card." description="Varies for Wild and Draw Four" role="inputOnly" />
+            <property name="selectedGameCard" type="@salesforce/schema/GameCard__c" label="Selected Game Card" role="outputOnly" />
+            <property name="selectedCard" type="@salesforce/schema/Card__c" label="Selected Card" role="outputOnly" />
+            <property name="playableCards" type="Integer" label="Number of Playable Cards" role="outputOnly" />
         </targetConfig>
     </targetConfigs>
-</LightningComponentBundle>
+</LightningComponentBundle> 

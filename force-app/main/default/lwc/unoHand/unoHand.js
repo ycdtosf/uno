@@ -6,8 +6,12 @@ export default class UnoHand extends LightningElement {
     @track _selectedGameCard;
     @track _selectedCard;
 
-    @api gameCards;
-    
+    @api playerGameCards;
+    @api topGameCard;
+    @api topCard;
+    @api topColor;
+
+    @api playableCards = 0;
 
     @api
     set selectedGameCard(value) {
@@ -37,6 +41,19 @@ export default class UnoHand extends LightningElement {
         fields: ['GameCard__c.Name','GameCard__c.Id']
     })
     gameCards;*/
+
+    handleCardLoaded(e) {
+        let unoCards = this.template.querySelectorAll('c-uno-card');
+        let count = 0;
+        unoCards.forEach((unoCard) => {
+            if(unoCard.isCardLoaded && unoCard.isPlayable) {
+                count++;
+            }
+        });
+
+        this.dispatchEvent(new FlowAttributeChangeEvent('playableCards', count));
+
+    }
 
     handleGameCardSelected(e) {
         

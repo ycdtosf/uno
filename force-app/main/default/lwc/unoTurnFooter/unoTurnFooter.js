@@ -3,8 +3,8 @@ import { FlowAttributeChangeEvent, FlowNavigationNextEvent } from 'lightning/flo
 
 export default class UnoTurnFooter extends LightningElement {
 
-    @api
-    availableActions = [];
+    @api availableActions = [];
+    @api playableCards = 0;
 
     @track _selectedGameCard;
     @api
@@ -41,12 +41,13 @@ export default class UnoTurnFooter extends LightningElement {
     }
 
     get playCardLabel() {
-        if(this.selectedCard) return 'Play ' + this.selectedCard.fields.Name.value + ' Card';
+        if(this.playableCards === 0) return 'No Cards to Play...';
+        if(this.selectedGameCard !== undefined) return 'Play ' + this.selectedCard.fields.Name.value + ' Card';
         return 'Select a Card to play...';
     }
 
     get isPlayCardActive() {
-        return this.selectedGameCard;
+        return this.playableCards > 0 && this.selectedGameCard !== undefined;
     }
 
     get isPlayCardButtonDisabled() {

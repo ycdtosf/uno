@@ -4,7 +4,11 @@ import { getRecord } from 'lightning/uiRecordApi';
 export default class UnoCard extends LightningElement {
 
     @api gameCard;
+    @api topGameCard;
+    @api topCard;
+    @api topColor;
     card;
+
 
     get cardId() {
         return this.gameCard.Card__c;
@@ -19,22 +23,59 @@ export default class UnoCard extends LightningElement {
         return 'black';
     }
 
+    get isPlayerHand() {
+        return this.topGameCard !== undefined && this.topCard !== undefined;
+    }
+
+    @api get isCardLoaded() {
+        return this.card !== undefined;
+    }
+
+    @api get isPlayable() {
+
+        // top card scenario
+        if(this.isPlayerHand === false) return true;
+
+        if(this.card && this.isPlayerHand) {
+
+            // scenario: brand new game and Wild or Draw Four are on top
+            if(this.topColor === 'Black') return true;
+
+            // match on color...
+            if(this.card.fields.Color__c.value === this.topColor) return true;
+
+            // match in value...
+            if(this.card.fields.Value__c.value === this.topCard.Value__c) return true;
+
+        }
+
+        return false;
+
+    }
+
     @wire(getRecord, { recordId: '$cardId', layoutTypes: ['Full'] })
     wiredCard({ error, data }) {
         if (data) {
             this.card = data;
             this.updateCss();
+
+            const cardLoaded = new CustomEvent('cardloaded', {} );
+            this.dispatchEvent(cardLoaded);
+
         } else if (error) {
             console.log(JSON.stringify(error));
         }
     };
 
     handleClick(e) {
-        const selectedEvent = new CustomEvent('selected', { detail: {
-            gameCard : this.gameCard,
-            card : this.card
-        } });
-        this.dispatchEvent(selectedEvent);
+
+        if(this.isPlayerHand && this.isPlayable) {
+            const selectedEvent = new CustomEvent('selected', { detail: {
+                gameCard : this.gameCard,
+                card : this.card
+            } });
+            this.dispatchEvent(selectedEvent);
+        }
     }
 
     updateCss() {
@@ -46,6 +87,19 @@ export default class UnoCard extends LightningElement {
         }
         else {
             css.setProperty('--uno-card-contrast-color', 'white');
+        }
+
+        if(!this.isPlayerHand && this.isPlayable) {
+            css.setProperty('cursor', 'not-allowed');
+            css.setProperty('opacity', '1.0');
+        }
+        else if(this.isPlayerHand && this.isPlayable) {
+            css.setProperty('cursor', 'pointer');
+            css.setProperty('opacity', '1.0');
+        }
+        else {
+            css.setProperty('cursor', 'not-allowed');
+            css.setProperty('opacity', '0.5');
         }
         
     }
