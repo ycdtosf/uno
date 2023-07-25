@@ -1,9 +1,15 @@
+# Next Week
+
+- Draw Pile
+- Discarded?
+- remove draw card at start of turn
+
 # Refactor???
 
-- Card Object: Card Custom Metadata????
-- Card Object: merge Action + Value fields???
-- Game Object: Top Card lookup vs Top Card Color / Value / Action
-- Turn Object: we need "Next" status back...
+- Card Object: Card Custom Metadata???? DONE
+- Card Object: merge Action + Value fields??? DONE
+- Game Object: Top Card lookup vs Top Card Color / Value / Action ???
+- Turn Object: we need "Next" status back... 
 
 # Backlog
 

@@ -145,6 +145,9 @@
     <layoutAssignments>
         <layout>Turn__c-Turn Layout</layout>
     </layoutAssignments>
+    <layoutAssignments>
+        <layout>UnoCard__mdt-Uno Card Layout</layout>
+    </layoutAssignments>
     <objectPermissions>
         <allowCreate>true</allowCreate>
         <allowDelete>true</allowDelete>

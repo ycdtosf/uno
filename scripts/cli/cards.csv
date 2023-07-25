@@ -1,109 +1,109 @@
-Name,Color__c,Value__c,Action__c
-Red 0,Red,0,
-Red 1,Red,1,
-Red 2,Red,2,
-Red 3,Red,3,
-Red 4,Red,4,
-Red 5,Red,5,
-Red 6,Red,6,
-Red 7,Red,7,
-Red 8,Red,8,
-Red 9,Red,9,
-Red Skip,Red,,Skip
-Red Reverse,Red,,Reverse
-Red Draw Two,Red,,Draw Two
-Red 1,Red,1,
-Red 2,Red,2,
-Red 3,Red,3,
-Red 4,Red,4,
-Red 5,Red,5,
-Red 6,Red,6,
-Red 7,Red,7,
-Red 8,Red,8,
-Red 9,Red,9,
-Red Skip,Red,,Skip
-Red Reverse,Red,,Reverse
-Red Draw Two,Red,,Draw Two
-Green 0,Green,0,
-Green 1,Green,1,
-Green 2,Green,2,
-Green 3,Green,3,
-Green 4,Green,4,
-Green 5,Green,5,
-Green 6,Green,6,
-Green 7,Green,7,
-Green 8,Green,8,
-Green 9,Green,9,
-Green Skip,Green,,Skip
-Green Reverse,Green,,Reverse
-Green Draw Two,Green,,Draw Two
-Green 1,Green,1,
-Green 2,Green,2,
-Green 3,Green,3,
-Green 4,Green,4,
-Green 5,Green,5,
-Green 6,Green,6,
-Green 7,Green,7,
-Green 8,Green,8,
-Green 9,Green,9,
-Green Skip,Green,,Skip
-Green Reverse,Green,,Reverse
-Green Draw Two,Green,,Draw Two
-Yellow 0,Yellow,0,
-Yellow 1,Yellow,1,
-Yellow 2,Yellow,2,
-Yellow 3,Yellow,3,
-Yellow 4,Yellow,4,
-Yellow 5,Yellow,5,
-Yellow 6,Yellow,6,
-Yellow 7,Yellow,7,
-Yellow 8,Yellow,8,
-Yellow 9,Yellow,9,
-Yellow Skip,Yellow,,Skip
-Yellow Reverse,Yellow,,Reverse
-Yellow Draw Two,Yellow,,Draw Two
-Yellow 1,Yellow,1,
-Yellow 2,Yellow,2,
-Yellow 3,Yellow,3,
-Yellow 4,Yellow,4,
-Yellow 5,Yellow,5,
-Yellow 6,Yellow,6,
-Yellow 7,Yellow,7,
-Yellow 8,Yellow,8,
-Yellow 9,Yellow,9,
-Yellow Skip,Yellow,,Skip
-Yellow Reverse,Yellow,,Reverse
-Yellow Draw Two,Yellow,,Draw Two
-Blue 0,Blue,0,
-Blue 1,Blue,1,
-Blue 2,Blue,2,
-Blue 3,Blue,3,
-Blue 4,Blue,4,
-Blue 5,Blue,5,
-Blue 6,Blue,6,
-Blue 7,Blue,7,
-Blue 8,Blue,8,
-Blue 9,Blue,9,
-Blue Skip,Blue,,Skip
-Blue Reverse,Blue,,Reverse
-Blue Draw Two,Blue,,Draw Two
-Blue 1,Blue,1,
-Blue 2,Blue,2,
-Blue 3,Blue,3,
-Blue 4,Blue,4,
-Blue 5,Blue,5,
-Blue 6,Blue,6,
-Blue 7,Blue,7,
-Blue 8,Blue,8,
-Blue 9,Blue,9,
-Blue Skip,Blue,,Skip
-Blue Reverse,Blue,,Reverse
-Blue Draw Two,Blue,,Draw Two
-Wild,,,Wild
-Wild,,,Wild
-Wild,,,Wild
-Wild,,,Wild
-Draw Four,,,Draw Four
-Draw Four,,,Draw Four
-Draw Four,,,Draw Four
-Draw Four,,,Draw Four
+Name,Color__c,Value__c
+Red 0 (1),Red,0
+Red 1 (1),Red,1
+Red 2 (1),Red,2
+Red 3 (1),Red,3
+Red 4 (1),Red,4
+Red 5 (1),Red,5
+Red 6 (1),Red,6
+Red 7 (1),Red,7
+Red 8 (1),Red,8
+Red 9 (1),Red,9
+Red Skip (1),Red,Skip
+Red Reverse (1),Red,Reverse
+Red Draw Two (1),Red,Draw Two
+Red 1 (2),Red,1
+Red 2 (2),Red,2
+Red 3 (2),Red,3
+Red 4 (2),Red,4
+Red 5 (2),Red,5
+Red 6 (2),Red,6
+Red 7 (2),Red,7
+Red 8 (2),Red,8
+Red 9 (2),Red,9
+Red Skip (2),Red,Skip
+Red Reverse (2),Red,Reverse
+Red Draw Two (2),Red,Draw Two
+Green 0 (1),Green,0
+Green 1 (1),Green,1
+Green 2 (1),Green,2
+Green 3 (1),Green,3
+Green 4 (1),Green,4
+Green 5 (1),Green,5
+Green 6 (1),Green,6
+Green 7 (1),Green,7
+Green 8 (1),Green,8
+Green 9 (1),Green,9
+Green Skip (1),Green,Skip
+Green Reverse (1),Green,Reverse
+Green Draw Two (1),Green,Draw Two
+Green 1 (2),Green,1
+Green 2 (2),Green,2
+Green 3 (2),Green,3
+Green 4 (2),Green,4
+Green 5 (2),Green,5
+Green 6 (2),Green,6
+Green 7 (2),Green,7
+Green 8 (2),Green,8
+Green 9 (2),Green,9
+Green Skip (2),Green,Skip
+Green Reverse (2),Green,Reverse
+Green Draw Two (2),Green,Draw Two
+Yellow 0 (1),Yellow,0
+Yellow 1 (1),Yellow,1
+Yellow 2 (1),Yellow,2
+Yellow 3 (1),Yellow,3
+Yellow 4 (1),Yellow,4
+Yellow 5 (1),Yellow,5
+Yellow 6 (1),Yellow,6
+Yellow 7 (1),Yellow,7
+Yellow 8 (1),Yellow,8
+Yellow 9 (1),Yellow,9
+Yellow Skip (1),Yellow,Skip
+Yellow Reverse (1),Yellow,Reverse
+Yellow Draw Two (1),Yellow,Draw Two
+Yellow 1 (2),Yellow,1
+Yellow 2 (2),Yellow,2
+Yellow 3 (2),Yellow,3
+Yellow 4 (2),Yellow,4
+Yellow 5 (2),Yellow,5
+Yellow 6 (2),Yellow,6
+Yellow 7 (2),Yellow,7
+Yellow 8 (2),Yellow,8
+Yellow 9 (2),Yellow,9
+Yellow Skip (2),Yellow,Skip
+Yellow Reverse (2),Yellow,Reverse
+Yellow Draw Two (2),Yellow,Draw Two
+Blue 0 (1),Blue,0
+Blue 1 (1),Blue,1
+Blue 2 (1),Blue,2
+Blue 3 (1),Blue,3
+Blue 4 (1),Blue,4
+Blue 5 (1),Blue,5
+Blue 6 (1),Blue,6
+Blue 7 (1),Blue,7
+Blue 8 (1),Blue,8
+Blue 9 (1),Blue,9
+Blue Skip (1),Blue,Skip
+Blue Reverse (1),Blue,Reverse
+Blue Draw Two (1),Blue,Draw Two
+Blue 1 (2),Blue,1
+Blue 2 (2),Blue,2
+Blue 3 (2),Blue,3
+Blue 4 (2),Blue,4
+Blue 5 (2),Blue,5
+Blue 6 (2),Blue,6
+Blue 7 (2),Blue,7
+Blue 8 (2),Blue,8
+Blue 9 (2),Blue,9
+Blue Skip (2),Blue,Skip
+Blue Reverse (2),Blue,Reverse
+Blue Draw Two (2),Blue,Draw Two
+Black Wild (1),Black,Wild
+Black Wild (2),Black,Wild
+Black Wild (3),Black,Wild
+Black Wild (4),Black,Wild
+Black Draw Four (1),Black,Draw Four
+Black Draw Four (2),Black,Draw Four
+Black Draw Four (3),Black,Draw Four
+Black Draw Four (4),Black,Draw Four

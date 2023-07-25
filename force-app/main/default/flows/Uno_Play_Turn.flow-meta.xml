@@ -5,7 +5,7 @@
         <name>Set_Turn_Fields</name>
         <label>Set Turn Fields</label>
         <locationX>50</locationX>
-        <locationY>890</locationY>
+        <locationY>782</locationY>
         <assignmentItems>
             <assignToReference>Get_Turn.Status__c</assignToReference>
             <operator>Assign</operator>
@@ -17,14 +17,14 @@
             <assignToReference>Get_Turn.Discarded__c</assignToReference>
             <operator>Assign</operator>
             <value>
-                <elementReference>unoTurnFooter.selectedGameCard.Id</elementReference>
+                <elementReference>unoHand.selectedGameCard.Id</elementReference>
             </value>
         </assignmentItems>
         <assignmentItems>
-            <assignToReference>unoTurnFooter.selectedGameCard.Pile__c</assignToReference>
+            <assignToReference>unoHand.selectedGameCard.Pile__c</assignToReference>
             <operator>Assign</operator>
             <value>
-                <elementReference>unoTurnFooter.selectedGameCard.Game__r.DiscardPile__c</elementReference>
+                <elementReference>Get_Turn.Game__r.DiscardPile__c</elementReference>
             </value>
         </assignmentItems>
         <connector>
@@ -35,13 +35,13 @@
         <name>Button_Outcome</name>
         <label>Button Outcome</label>
         <locationX>182</locationX>
-        <locationY>782</locationY>
+        <locationY>674</locationY>
         <defaultConnector>
             <targetReference>Update_Turn</targetReference>
         </defaultConnector>
         <defaultConnectorLabel>Default Outcome</defaultConnectorLabel>
         <rules>
-            <name>Discard</name>
+            <name>DoDiscard</name>
             <conditionLogic>and</conditionLogic>
             <conditions>
                 <leftValueReference>unoTurnFooter.selectedAction</leftValueReference>
@@ -53,14 +53,14 @@
             <connector>
                 <targetReference>Set_Turn_Fields</targetReference>
             </connector>
-            <label>Discard</label>
+            <label>Do Discard</label>
         </rules>
     </decisions>
     <decisions>
         <name>Turn_Status</name>
         <label>Turn Status</label>
         <locationX>336</locationX>
-        <locationY>566</locationY>
+        <locationY>458</locationY>
         <defaultConnector>
             <targetReference>s1</targetReference>
         </defaultConnector>
@@ -112,7 +112,7 @@
         <name>Get_Player_Hand_Game_Cards</name>
         <label>Get Player Hand Game Cards</label>
         <locationX>336</locationX>
-        <locationY>458</locationY>
+        <locationY>350</locationY>
         <assignNullValuesIfNoRecordsFound>false</assignNullValuesIfNoRecordsFound>
         <connector>
             <targetReference>Turn_Status</targetReference>
@@ -130,34 +130,13 @@
         <storeOutputAutomatically>true</storeOutputAutomatically>
     </recordLookups>
     <recordLookups>
-        <name>Get_Top_Card</name>
-        <label>Get Top Card</label>
-        <locationX>336</locationX>
-        <locationY>350</locationY>
-        <assignNullValuesIfNoRecordsFound>false</assignNullValuesIfNoRecordsFound>
-        <connector>
-            <targetReference>Get_Player_Hand_Game_Cards</targetReference>
-        </connector>
-        <filterLogic>and</filterLogic>
-        <filters>
-            <field>Id</field>
-            <operator>EqualTo</operator>
-            <value>
-                <elementReference>Get_Top_Game_Card.Card__c</elementReference>
-            </value>
-        </filters>
-        <getFirstRecordOnly>true</getFirstRecordOnly>
-        <object>Card__c</object>
-        <storeOutputAutomatically>true</storeOutputAutomatically>
-    </recordLookups>
-    <recordLookups>
         <name>Get_Top_Game_Card</name>
         <label>Get Top Game Card</label>
         <locationX>336</locationX>
         <locationY>242</locationY>
         <assignNullValuesIfNoRecordsFound>false</assignNullValuesIfNoRecordsFound>
         <connector>
-            <targetReference>Get_Top_Card</targetReference>
+            <targetReference>Get_Player_Hand_Game_Cards</targetReference>
         </connector>
         <filterLogic>and</filterLogic>
         <filters>
@@ -196,17 +175,17 @@
         <name>Update_Game_Card</name>
         <label>Update Game Card</label>
         <locationX>182</locationX>
-        <locationY>1190</locationY>
+        <locationY>1082</locationY>
         <connector>
             <targetReference>Update_Game_Top_Card_Fields</targetReference>
         </connector>
-        <inputReference>unoTurnFooter.selectedGameCard</inputReference>
+        <inputReference>unoHand.selectedGameCard</inputReference>
     </recordUpdates>
     <recordUpdates>
         <name>Update_Game_Top_Card_Fields</name>
         <label>Update Game Top Card Fields</label>
         <locationX>182</locationX>
-        <locationY>1298</locationY>
+        <locationY>1190</locationY>
         <connector>
             <targetReference>Create_Next_Turn</targetReference>
         </connector>
@@ -221,7 +200,7 @@
         <inputAssignments>
             <field>TopCardColor__c</field>
             <value>
-                <elementReference>unoHand.selectedCard.Color__c</elementReference>
+                <elementReference>unoHand.selectedGameCard.Color__c</elementReference>
             </value>
         </inputAssignments>
         <inputAssignments>
@@ -236,7 +215,7 @@
         <name>Update_Turn</name>
         <label>Update Turn</label>
         <locationX>182</locationX>
-        <locationY>1082</locationY>
+        <locationY>974</locationY>
         <connector>
             <targetReference>Update_Game_Card</targetReference>
         </connector>
@@ -247,7 +226,7 @@
         <name>s1</name>
         <label>s1</label>
         <locationX>490</locationX>
-        <locationY>674</locationY>
+        <locationY>566</locationY>
         <allowBack>true</allowBack>
         <allowFinish>true</allowFinish>
         <allowPause>true</allowPause>
@@ -263,7 +242,7 @@
         <name>s2</name>
         <label>s2</label>
         <locationX>182</locationX>
-        <locationY>674</locationY>
+        <locationY>566</locationY>
         <allowBack>true</allowBack>
         <allowFinish>true</allowFinish>
         <allowPause>true</allowPause>
@@ -338,27 +317,15 @@
             <extensionName>c:unoHand</extensionName>
             <fieldType>ComponentInstance</fieldType>
             <inputParameters>
-                <name>playerGameCards</name>
-                <value>
-                    <elementReference>Get_Player_Hand_Game_Cards</elementReference>
-                </value>
-            </inputParameters>
-            <inputParameters>
                 <name>topGameCard</name>
                 <value>
                     <elementReference>Get_Top_Game_Card</elementReference>
                 </value>
             </inputParameters>
             <inputParameters>
-                <name>topCard</name>
+                <name>playerGameCards</name>
                 <value>
-                    <elementReference>Get_Top_Card</elementReference>
-                </value>
-            </inputParameters>
-            <inputParameters>
-                <name>topColor</name>
-                <value>
-                    <elementReference>Get_Turn.Game__r.TopCardColor__c</elementReference>
+                    <elementReference>Get_Player_Hand_Game_Cards</elementReference>
                 </value>
             </inputParameters>
             <inputsOnNextNavToAssocScrn>UseStoredValues</inputsOnNextNavToAssocScrn>
@@ -370,21 +337,15 @@
             <extensionName>c:unoTurnFooter</extensionName>
             <fieldType>ComponentInstance</fieldType>
             <inputParameters>
-                <name>selectedCard</name>
+                <name>playableCardCount</name>
                 <value>
-                    <elementReference>unoHand.selectedCard</elementReference>
+                    <elementReference>unoHand.playableCardCount</elementReference>
                 </value>
             </inputParameters>
             <inputParameters>
                 <name>selectedGameCard</name>
                 <value>
                     <elementReference>unoHand.selectedGameCard</elementReference>
-                </value>
-            </inputParameters>
-            <inputParameters>
-                <name>playableCards</name>
-                <value>
-                    <elementReference>unoHand.playableCards</elementReference>
                 </value>
             </inputParameters>
             <inputsOnNextNavToAssocScrn>UseStoredValues</inputsOnNextNavToAssocScrn>
@@ -398,7 +359,7 @@
         <name>s3</name>
         <label>s3</label>
         <locationX>182</locationX>
-        <locationY>1514</locationY>
+        <locationY>1406</locationY>
         <allowBack>true</allowBack>
         <allowFinish>true</allowFinish>
         <allowPause>true</allowPause>
@@ -422,7 +383,7 @@
         <name>Create_Next_Turn</name>
         <label>Create Next Turn</label>
         <locationX>182</locationX>
-        <locationY>1406</locationY>
+        <locationY>1298</locationY>
         <connector>
             <targetReference>s3</targetReference>
         </connector>

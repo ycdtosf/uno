@@ -4,7 +4,7 @@ import { FlowAttributeChangeEvent, FlowNavigationNextEvent } from 'lightning/flo
 export default class UnoTurnFooter extends LightningElement {
 
     @api availableActions = [];
-    @api playableCards = 0;
+    @api playableCardCount = 0;
 
     @track _selectedGameCard;
     @api
@@ -15,18 +15,6 @@ export default class UnoTurnFooter extends LightningElement {
     };
     get selectedGameCard() {
         return this._selectedGameCard;
-    }
-
-    @track _selectedCard;
-    @api
-    set selectedCard(value) {
-        if (value) {
-            this._selectedCard = value;
-            this.updateCss();
-        }
-    };
-    get selectedCard() {
-        return this._selectedCard;
     }
 
     @track _selectedAction;
@@ -41,22 +29,18 @@ export default class UnoTurnFooter extends LightningElement {
     }
 
     get playCardLabel() {
-        if(this.playableCards === 0) return 'No Cards to Play...';
-        if(this.selectedGameCard !== undefined) return 'Play ' + this.selectedCard.fields.Name.value + ' Card';
+        if(this.playableCardCount === 0) return 'No Cards to Play...';
+        if(this.selectedGameCard !== undefined) return 'Play ' + this.selectedGameCard.Label__c + ' Card';
         return 'Select a Card to play...';
     }
 
     get isPlayCardActive() {
-        return this.playableCards > 0 && this.selectedGameCard !== undefined;
+        return this.playableCardCount > 0 && this.selectedGameCard !== undefined;
     }
 
     get isPlayCardButtonDisabled() {
+        if(this.isPlayCardActive === true) this.updateCss();
         return !this.isPlayCardActive;
-    }
-
-    get selectedCardColor() {
-        if(this.selectedCard.fields.Color__c.value) return this.selectedCard.fields.Color__c.value.toLowerCase();
-        return 'black';
     }
 
     handleClick(e) {
@@ -66,7 +50,7 @@ export default class UnoTurnFooter extends LightningElement {
 
     updateCss() {
         var css = this.template.host.style;
-        var color = this.selectedCardColor;
+        var color = this.selectedGameCard.Color__c.toLowerCase();
         css.setProperty('--uno-color', color);
         if(color === 'yellow') {
             css.setProperty('--uno-contrast-color', 'black');

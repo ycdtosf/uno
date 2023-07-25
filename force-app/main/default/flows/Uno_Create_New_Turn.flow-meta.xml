@@ -276,7 +276,7 @@
             <name>Skip</name>
             <conditionLogic>and</conditionLogic>
             <conditions>
-                <leftValueReference>Get_Game.TopCard__r.Card__r.Action__c</leftValueReference>
+                <leftValueReference>Get_Game.TopCard__r.Value__c</leftValueReference>
                 <operator>EqualTo</operator>
                 <rightValue>
                     <stringValue>Skip</stringValue>
@@ -291,7 +291,7 @@
             <name>Draw_Two</name>
             <conditionLogic>and</conditionLogic>
             <conditions>
-                <leftValueReference>Get_Game.TopCard__r.Card__r.Action__c</leftValueReference>
+                <leftValueReference>Get_Game.TopCard__r.Value__c</leftValueReference>
                 <operator>EqualTo</operator>
                 <rightValue>
                     <stringValue>Draw Two</stringValue>
@@ -306,7 +306,7 @@
             <name>Draw_Four</name>
             <conditionLogic>and</conditionLogic>
             <conditions>
-                <leftValueReference>Get_Game.TopCard__r.Card__r.Action__c</leftValueReference>
+                <leftValueReference>Get_Game.TopCard__r.Value__c</leftValueReference>
                 <operator>EqualTo</operator>
                 <rightValue>
                     <stringValue>Draw Four</stringValue>
@@ -432,6 +432,7 @@
             <label>Yes</label>
         </rules>
     </decisions>
+    <description>V3 - Replaced Card__c with UnoCard__mdt</description>
     <environments>Default</environments>
     <formulas>
         <name>isReversed</name>

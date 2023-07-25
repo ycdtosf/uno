@@ -162,10 +162,24 @@
             </value>
         </assignmentItems>
         <assignmentItems>
-            <assignToReference>gameCardIterator.Card__c</assignToReference>
+            <assignToReference>gameCardIterator.Color__c</assignToReference>
             <operator>Assign</operator>
             <value>
-                <elementReference>Loop_Cards.Id</elementReference>
+                <elementReference>Loop_Cards.Color__c</elementReference>
+            </value>
+        </assignmentItems>
+        <assignmentItems>
+            <assignToReference>gameCardIterator.Value__c</assignToReference>
+            <operator>Assign</operator>
+            <value>
+                <elementReference>Loop_Cards.Value__c</elementReference>
+            </value>
+        </assignmentItems>
+        <assignmentItems>
+            <assignToReference>gameCardIterator.Label__c</assignToReference>
+            <operator>Assign</operator>
+            <value>
+                <elementReference>gameCardLabel</elementReference>
             </value>
         </assignmentItems>
         <assignmentItems>
@@ -358,8 +372,13 @@
             <label>Yes</label>
         </rules>
     </decisions>
-    <description>Without Crazy Loop</description>
+    <description>V2 - replacing Card__c with UnoCard__mdt</description>
     <environments>Default</environments>
+    <formulas>
+        <name>gameCardLabel</name>
+        <dataType>String</dataType>
+        <expression>TEXT({!Loop_Cards.Color__c}) &amp; &quot; &quot; &amp; {!Loop_Cards.Value__c}</expression>
+    </formulas>
     <formulas>
         <name>maxGameCardIndex</name>
         <dataType>Number</dataType>
@@ -373,7 +392,7 @@
         <label>Loop Cards</label>
         <locationX>226</locationX>
         <locationY>782</locationY>
-        <collectionReference>Get_Cards</collectionReference>
+        <collectionReference>Get_Cards_Metadata</collectionReference>
         <iterationOrder>Asc</iterationOrder>
         <nextValueConnector>
             <targetReference>Init_Game_Card_Iterator</targetReference>
@@ -550,8 +569,8 @@
         <inputReference>playersCollection</inputReference>
     </recordCreates>
     <recordLookups>
-        <name>Get_Cards</name>
-        <label>Get Cards</label>
+        <name>Get_Cards_Metadata</name>
+        <label>Get Cards Metadata</label>
         <locationX>226</locationX>
         <locationY>242</locationY>
         <assignNullValuesIfNoRecordsFound>false</assignNullValuesIfNoRecordsFound>
@@ -559,7 +578,7 @@
             <targetReference>New_Uno_Game</targetReference>
         </connector>
         <getFirstRecordOnly>false</getFirstRecordOnly>
-        <object>Card__c</object>
+        <object>UnoCard__mdt</object>
         <storeOutputAutomatically>true</storeOutputAutomatically>
     </recordLookups>
     <recordLookups>
@@ -592,7 +611,7 @@
         <locationY>134</locationY>
         <assignNullValuesIfNoRecordsFound>false</assignNullValuesIfNoRecordsFound>
         <connector>
-            <targetReference>Get_Cards</targetReference>
+            <targetReference>Get_Cards_Metadata</targetReference>
         </connector>
         <filterLogic>and</filterLogic>
         <filters>

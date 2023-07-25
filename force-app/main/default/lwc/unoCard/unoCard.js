@@ -5,30 +5,9 @@ export default class UnoCard extends LightningElement {
 
     @api gameCard;
     @api topGameCard;
-    @api topCard;
-    @api topColor;
-    card;
-
-
-    get cardId() {
-        return this.gameCard.Card__c;
-    }
-
-    get cardJSON() {
-        return JSON.stringify(this.card);
-    }
-
-    get cardColor() {
-        if(this.card && this.card.fields.Color__c.value) return this.card.fields.Color__c.value.toLowerCase();
-        return 'black';
-    }
 
     get isPlayerHand() {
-        return this.topGameCard !== undefined && this.topCard !== undefined;
-    }
-
-    @api get isCardLoaded() {
-        return this.card !== undefined;
+        return this.topGameCard !== undefined;
     }
 
     @api get isPlayable() {
@@ -36,16 +15,16 @@ export default class UnoCard extends LightningElement {
         // top card scenario
         if(this.isPlayerHand === false) return true;
 
-        if(this.card && this.isPlayerHand) {
+        if(this.isPlayerHand === true) {
 
             // scenario: brand new game and Wild or Draw Four are on top
             if(this.topColor === 'Black') return true;
 
             // match on color...
-            if(this.card.fields.Color__c.value === this.topColor) return true;
+            if(this.gameCard.Color__c === this.topGameCard.Color__c) return true;
 
             // match in value...
-            if(this.card.fields.Value__c.value === this.topCard.Value__c) return true;
+            if(this.gameCard.Value__c === this.topGameCard.Value__c) return true;
 
         }
 
@@ -53,26 +32,17 @@ export default class UnoCard extends LightningElement {
 
     }
 
-    @wire(getRecord, { recordId: '$cardId', layoutTypes: ['Full'] })
-    wiredCard({ error, data }) {
-        if (data) {
-            this.card = data;
-            this.updateCss();
-
-            const cardLoaded = new CustomEvent('cardloaded', {} );
-            this.dispatchEvent(cardLoaded);
-
-        } else if (error) {
-            console.log(JSON.stringify(error));
-        }
-    };
+    connectedCallback() {
+        this.updateCss();
+        const cardLoaded = new CustomEvent('cardloaded', {} );
+        this.dispatchEvent(cardLoaded);
+    }
 
     handleClick(e) {
 
         if(this.isPlayerHand && this.isPlayable) {
             const selectedEvent = new CustomEvent('selected', { detail: {
-                gameCard : this.gameCard,
-                card : this.card
+                gameCard : this.gameCard
             } });
             this.dispatchEvent(selectedEvent);
         }
@@ -80,7 +50,7 @@ export default class UnoCard extends LightningElement {
 
     updateCss() {
         var css = this.template.host.style;
-        var color = this.cardColor;
+        var color = this.gameCard.Color__c.toLowerCase();
         css.setProperty('--uno-card-color', color);
         if(color === 'yellow') {
             css.setProperty('--uno-card-contrast-color', 'black');

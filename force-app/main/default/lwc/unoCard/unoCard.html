@@ -1,7 +1,5 @@
 <template>
-    <template lwc:if={card}>
-        <lightning-card hide-header="true" onclick={handleClick}>
-            <div class="slds-align_absolute-center">{card.fields.Value__c.value}{card.fields.Action__c.value}</div>
-        </lightning-card>
-    </template>
+    <lightning-card hide-header="true" onclick={handleClick}>
+        <div class="slds-align_absolute-center">{gameCard.Value__c}</div>
+    </lightning-card>
 </template> 
