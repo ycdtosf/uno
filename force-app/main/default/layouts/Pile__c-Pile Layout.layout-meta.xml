@@ -58,9 +58,12 @@
         <style>CustomLinks</style>
     </layoutSections>
     <relatedLists>
+        <excludeButtons>MassChangeOwner</excludeButtons>
+        <excludeButtons>New</excludeButtons>
         <fields>NAME</fields>
-        <fields>Card__c</fields>
         <fields>Sequence__c</fields>
+        <fields>Color__c</fields>
+        <fields>Value__c</fields>
         <relatedList>GameCard__c.Pile__c</relatedList>
     </relatedLists>
     <showEmailCheckbox>false</showEmailCheckbox>
@@ -69,7 +72,7 @@
     <showRunAssignmentRulesCheckbox>false</showRunAssignmentRulesCheckbox>
     <showSubmitAndAttachButton>false</showSubmitAndAttachButton>
     <summaryLayout>
-        <masterLabel>00h010000010Jp9</masterLabel>
+        <masterLabel>00h53000003UEEs</masterLabel>
         <sizeX>4</sizeX>
         <sizeY>0</sizeY>
         <summaryLayoutStyle>Default</summaryLayoutStyle>

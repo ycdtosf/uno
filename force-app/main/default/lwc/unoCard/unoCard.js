@@ -1,14 +1,17 @@
-import { LightningElement, api, wire } from 'lwc';
-import { getRecord } from 'lightning/uiRecordApi';
+import { LightningElement, api } from 'lwc';
 
 export default class UnoCard extends LightningElement {
 
     @api gameCard;
     @api topGameCard;
+    @api isDrawCard = false;
+    @api isDrawCardDrawn = false;
 
     get isPlayerHand() {
         return this.topGameCard !== undefined;
     }
+
+    // 2023-08-01 - cannot play draw two on draw two
 
     @api get isPlayable() {
 

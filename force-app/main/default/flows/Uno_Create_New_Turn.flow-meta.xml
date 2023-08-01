@@ -2,10 +2,89 @@
 <Flow xmlns="http://soap.sforce.com/2006/04/metadata">
     <apiVersion>58.0</apiVersion>
     <assignments>
+        <name>Auto_Done_Set_Draw_Count_to_0</name>
+        <label>Auto Done - Set Draw Count to 0</label>
+        <locationX>50</locationX>
+        <locationY>1382</locationY>
+        <assignmentItems>
+            <assignToReference>drawCount</assignToReference>
+            <operator>Assign</operator>
+            <value>
+                <numberValue>0.0</numberValue>
+            </value>
+        </assignmentItems>
+        <connector>
+            <targetReference>Draw_Count_Reached</targetReference>
+        </connector>
+    </assignments>
+    <assignments>
+        <name>Auto_Done_True</name>
+        <label>Auto Done True</label>
+        <locationX>248</locationX>
+        <locationY>1898</locationY>
+        <assignmentItems>
+            <assignToReference>isTurnAutoDone</assignToReference>
+            <operator>Assign</operator>
+            <value>
+                <booleanValue>true</booleanValue>
+            </value>
+        </assignmentItems>
+        <connector>
+            <isGoTo>true</isGoTo>
+            <targetReference>Get_Game</targetReference>
+        </connector>
+    </assignments>
+    <assignments>
+        <name>Default_Set_Draw_Count_to_0</name>
+        <label>Default - Set Draw Count to 0</label>
+        <locationX>1106</locationX>
+        <locationY>1382</locationY>
+        <assignmentItems>
+            <assignToReference>drawCount</assignToReference>
+            <operator>Assign</operator>
+            <value>
+                <numberValue>0.0</numberValue>
+            </value>
+        </assignmentItems>
+        <connector>
+            <targetReference>Draw_Count_Reached</targetReference>
+        </connector>
+    </assignments>
+    <assignments>
+        <name>Init_New_Turn</name>
+        <label>Init New Turn</label>
+        <locationX>578</locationX>
+        <locationY>1166</locationY>
+        <assignmentItems>
+            <assignToReference>newTurn.Status__c</assignToReference>
+            <operator>Assign</operator>
+            <value>
+                <stringValue>Next</stringValue>
+            </value>
+        </assignmentItems>
+        <assignmentItems>
+            <assignToReference>newTurn.Game__c</assignToReference>
+            <operator>Assign</operator>
+            <value>
+                <elementReference>gameId</elementReference>
+            </value>
+        </assignmentItems>
+        <assignmentItems>
+            <assignToReference>newTurn.Player__c</assignToReference>
+            <operator>Assign</operator>
+            <value>
+                <elementReference>nextPlayer.Id</elementReference>
+            </value>
+        </assignmentItems>
+        <connector>
+            <targetReference>Evaluate_Top_Card</targetReference>
+        </connector>
+    </assignments>
+    <assignments>
         <name>Set_Draw_Count_to_0</name>
         <label>Set Draw Count to 0</label>
-        <locationX>50</locationX>
-        <locationY>1274</locationY>
+        <locationX>314</locationX>
+        <locationY>1382</locationY>
         <assignmentItems>
             <assignToReference>drawCount</assignToReference>
             <operator>Assign</operator>
@@ -25,33 +104,10 @@
         </connector>
     </assignments>
     <assignments>
-        <name>Set_Draw_Count_to_1</name>
-        <label>Set Draw Count to 1</label>
-        <locationX>842</locationX>
-        <locationY>1274</locationY>
-        <assignmentItems>
-            <assignToReference>drawCount</assignToReference>
-            <operator>Assign</operator>
-            <value>
-                <numberValue>1.0</numberValue>
-            </value>
-        </assignmentItems>
-        <assignmentItems>
-            <assignToReference>newTurn.Status__c</assignToReference>
-            <operator>Assign</operator>
-            <value>
-                <stringValue>Drawn</stringValue>
-            </value>
-        </assignmentItems>
-        <connector>
-            <targetReference>Draw_Count_Reached</targetReference>
-        </connector>
-    </assignments>
-    <assignments>
         <name>Set_Draw_Count_to_2</name>
         <label>Set Draw Count to 2</label>
-        <locationX>314</locationX>
-        <locationY>1274</locationY>
+        <locationX>578</locationX>
+        <locationY>1382</locationY>
         <assignmentItems>
             <assignToReference>drawCount</assignToReference>
             <operator>Assign</operator>
@@ -73,8 +129,8 @@
     <assignments>
         <name>Set_Draw_Count_to_4</name>
         <label>Set Draw Count to 4</label>
-        <locationX>578</locationX>
-        <locationY>1274</locationY>
+        <locationX>842</locationX>
+        <locationY>1382</locationY>
         <assignmentItems>
             <assignToReference>drawCount</assignToReference>
             <operator>Assign</operator>
@@ -96,8 +152,8 @@
     <assignments>
         <name>Set_Game_Card_Hand</name>
         <label>Set Game Card Hand</label>
-        <locationX>578</locationX>
-        <locationY>1682</locationY>
+        <locationX>776</locationX>
+        <locationY>1790</locationY>
         <assignmentItems>
             <assignToReference>Get_Next_Game_Card.Pile__c</assignToReference>
             <operator>Assign</operator>
@@ -119,22 +175,8 @@
     <assignments>
         <name>Set_New_Turn_Fields</name>
         <label>Set New Turn Fields</label>
-        <locationX>578</locationX>
-        <locationY>1898</locationY>
-        <assignmentItems>
-            <assignToReference>newTurn.Game__c</assignToReference>
-            <operator>Assign</operator>
-            <value>
-                <elementReference>gameId</elementReference>
-            </value>
-        </assignmentItems>
-        <assignmentItems>
-            <assignToReference>newTurn.Player__c</assignToReference>
-            <operator>Assign</operator>
-            <value>
-                <elementReference>nextPlayer.Id</elementReference>
-            </value>
-        </assignmentItems>
+        <locationX>776</locationX>
+        <locationY>2006</locationY>
         <assignmentItems>
             <assignToReference>newTurn.Drawn__c</assignToReference>
             <operator>Assign</operator>
@@ -157,7 +199,7 @@
     <assignments>
         <name>Set_Next_Player</name>
         <label>Set Next Player</label>
-        <locationX>50</locationX>
+        <locationX>182</locationX>
         <locationY>782</locationY>
         <assignmentItems>
             <assignToReference>nextPlayer</assignToReference>
@@ -167,13 +209,13 @@
             </value>
         </assignmentItems>
         <connector>
-            <targetReference>Evaluate_Top_Card</targetReference>
+            <targetReference>Init_New_Turn</targetReference>
         </connector>
     </assignments>
     <assignments>
         <name>Set_Next_Player_2</name>
         <label>Set Next Player 2</label>
-        <locationX>314</locationX>
+        <locationX>446</locationX>
         <locationY>890</locationY>
         <assignmentItems>
             <assignToReference>nextPlayer</assignToReference>
@@ -183,13 +225,13 @@
             </value>
         </assignmentItems>
         <connector>
-            <targetReference>Evaluate_Top_Card</targetReference>
+            <targetReference>Init_New_Turn</targetReference>
         </connector>
     </assignments>
     <assignments>
         <name>Set_Next_Player_3</name>
         <label>Set Next Player 3</label>
-        <locationX>578</locationX>
+        <locationX>710</locationX>
         <locationY>782</locationY>
         <assignmentItems>
             <assignToReference>nextPlayer</assignToReference>
@@ -199,13 +241,13 @@
             </value>
         </assignmentItems>
         <connector>
-            <targetReference>Evaluate_Top_Card</targetReference>
+            <targetReference>Init_New_Turn</targetReference>
         </connector>
     </assignments>
     <assignments>
         <name>Set_Next_Player_4</name>
         <label>Set Next Player 4</label>
-        <locationX>842</locationX>
+        <locationX>974</locationX>
         <locationY>890</locationY>
         <assignmentItems>
             <assignToReference>nextPlayer</assignToReference>
@@ -215,13 +257,13 @@
             </value>
         </assignmentItems>
         <connector>
-            <targetReference>Evaluate_Top_Card</targetReference>
+            <targetReference>Init_New_Turn</targetReference>
         </connector>
     </assignments>
     <assignments>
         <name>Set_Result_Fields</name>
         <label>Set Result Fields</label>
-        <locationX>1106</locationX>
+        <locationX>1370</locationX>
         <locationY>458</locationY>
         <assignmentItems>
             <assignToReference>success</assignToReference>
@@ -241,8 +283,8 @@
     <decisions>
         <name>Draw_Count_Reached</name>
         <label>Draw Count Reached?</label>
-        <locationX>446</locationX>
-        <locationY>1466</locationY>
+        <locationX>578</locationX>
+        <locationY>1574</locationY>
         <defaultConnector>
             <targetReference>Get_Next_Game_Card</targetReference>
         </defaultConnector>
@@ -266,12 +308,27 @@
     <decisions>
         <name>Evaluate_Top_Card</name>
         <label>Evaluate Top Card</label>
-        <locationX>446</locationX>
-        <locationY>1166</locationY>
+        <locationX>578</locationX>
+        <locationY>1274</locationY>
         <defaultConnector>
-            <targetReference>Set_Draw_Count_to_1</targetReference>
+            <targetReference>Default_Set_Draw_Count_to_0</targetReference>
         </defaultConnector>
         <defaultConnectorLabel>Default Outcome</defaultConnectorLabel>
+        <rules>
+            <name>Last_Turn_Auto_Done</name>
+            <conditionLogic>and</conditionLogic>
+            <conditions>
+                <leftValueReference>isTurnAutoDone</leftValueReference>
+                <operator>EqualTo</operator>
+                <rightValue>
+                    <booleanValue>true</booleanValue>
+                </rightValue>
+            </conditions>
+            <connector>
+                <targetReference>Auto_Done_Set_Draw_Count_to_0</targetReference>
+            </connector>
+            <label>Last Turn Auto Done?</label>
+        </rules>
         <rules>
             <name>Skip</name>
             <conditionLogic>and</conditionLogic>
@@ -321,7 +378,7 @@
     <decisions>
         <name>Is_Turn_Done</name>
         <label>Is Turn Done?</label>
-        <locationX>776</locationX>
+        <locationX>974</locationX>
         <locationY>350</locationY>
         <defaultConnector>
             <targetReference>Set_Result_Fields</targetReference>
@@ -339,9 +396,9 @@
             </conditions>
             <conditions>
                 <leftValueReference>Get_Latest_Turn.Status__c</leftValueReference>
-                <operator>EqualTo</operator>
+                <operator>NotEqualTo</operator>
                 <rightValue>
-                    <stringValue>Done</stringValue>
+                    <stringValue>Next</stringValue>
                 </rightValue>
             </conditions>
             <conditions>
@@ -358,9 +415,39 @@
         </rules>
     </decisions>
     <decisions>
+        <description>Fires on Skip, Draw Two, Draw Four</description>
+        <name>Next_Turn_Auto_Done</name>
+        <label>Next Turn Auto-Done?</label>
+        <locationX>380</locationX>
+        <locationY>1790</locationY>
+        <defaultConnectorLabel>Default Outcome</defaultConnectorLabel>
+        <rules>
+            <name>Yes</name>
+            <conditionLogic>and</conditionLogic>
+            <conditions>
+                <leftValueReference>newTurn.Status__c</leftValueReference>
+                <operator>NotEqualTo</operator>
+                <rightValue>
+                    <stringValue>Next</stringValue>
+                </rightValue>
+            </conditions>
+            <conditions>
+                <leftValueReference>isTurnAutoDone</leftValueReference>
+                <operator>EqualTo</operator>
+                <rightValue>
+                    <booleanValue>false</booleanValue>
+                </rightValue>
+            </conditions>
+            <connector>
+                <targetReference>Auto_Done_True</targetReference>
+            </connector>
+            <label>Yes</label>
+        </rules>
+    </decisions>
+    <decisions>
         <name>Player_Found</name>
         <label>Player Found?</label>
-        <locationX>710</locationX>
+        <locationX>842</locationX>
         <locationY>674</locationY>
         <defaultConnector>
             <targetReference>Get_Latest_User_Attempt_2</targetReference>
@@ -385,7 +472,7 @@
     <decisions>
         <name>Player_Found_Reversed_Attempt</name>
         <label>Player Found (Reversed Attempt)?</label>
-        <locationX>182</locationX>
+        <locationX>314</locationX>
         <locationY>674</locationY>
         <defaultConnector>
             <targetReference>Get_Latest_User_Reversed_Attempt_2</targetReference>
@@ -410,7 +497,7 @@
     <decisions>
         <name>Reversed</name>
         <label>Reversed?</label>
-        <locationX>446</locationX>
+        <locationX>578</locationX>
         <locationY>458</locationY>
         <defaultConnector>
             <targetReference>Get_Latest_User_Attempt_1</targetReference>
@@ -432,7 +519,8 @@
             <label>Yes</label>
         </rules>
     </decisions>
-    <description>V3 - Replaced Card__c with UnoCard__mdt</description>
+    <description>V4 - removing automatically selecting a card for the user&apos;s turn
+V3 - Replaced Card__c with UnoCard__mdt</description>
     <environments>Default</environments>
     <formulas>
         <name>isReversed</name>
@@ -473,14 +561,17 @@
     <recordCreates>
         <name>Create_Next_Turn</name>
         <label>Create Next Turn</label>
-        <locationX>314</locationX>
-        <locationY>1574</locationY>
+        <locationX>380</locationX>
+        <locationY>1682</locationY>
+        <connector>
+            <targetReference>Next_Turn_Auto_Done</targetReference>
+        </connector>
         <inputReference>newTurn</inputReference>
     </recordCreates>
     <recordLookups>
         <name>Get_Game</name>
         <label>Get Game</label>
-        <locationX>776</locationX>
+        <locationX>974</locationX>
         <locationY>134</locationY>
         <assignNullValuesIfNoRecordsFound>false</assignNullValuesIfNoRecordsFound>
         <connector>
@@ -501,7 +592,7 @@
     <recordLookups>
         <name>Get_Latest_Turn</name>
         <label>Get Latest Turn</label>
-        <locationX>776</locationX>
+        <locationX>974</locationX>
         <locationY>242</locationY>
         <assignNullValuesIfNoRecordsFound>false</assignNullValuesIfNoRecordsFound>
         <connector>
@@ -524,7 +615,7 @@
     <recordLookups>
         <name>Get_Latest_User_Attempt_1</name>
         <label>Get Latest User (Attempt 1)</label>
-        <locationX>710</locationX>
+        <locationX>842</locationX>
         <locationY>566</locationY>
         <assignNullValuesIfNoRecordsFound>false</assignNullValuesIfNoRecordsFound>
         <connector>
@@ -561,7 +652,7 @@
     <recordLookups>
         <name>Get_Latest_User_Attempt_2</name>
         <label>Get Latest User (Attempt 2)</label>
-        <locationX>842</locationX>
+        <locationX>974</locationX>
         <locationY>782</locationY>
         <assignNullValuesIfNoRecordsFound>false</assignNullValuesIfNoRecordsFound>
         <connector>
@@ -591,7 +682,7 @@
     <recordLookups>
         <name>Get_Latest_User_Reversed_Attempt_1</name>
         <label>Get Latest User (Reversed Attempt 1)</label>
-        <locationX>182</locationX>
+        <locationX>314</locationX>
         <locationY>566</locationY>
         <assignNullValuesIfNoRecordsFound>false</assignNullValuesIfNoRecordsFound>
         <connector>
@@ -628,7 +719,7 @@
     <recordLookups>
         <name>Get_Latest_User_Reversed_Attempt_2</name>
         <label>Get Latest User (Reversed Attempt 2)</label>
-        <locationX>314</locationX>
+        <locationX>446</locationX>
         <locationY>782</locationY>
         <assignNullValuesIfNoRecordsFound>false</assignNullValuesIfNoRecordsFound>
         <connector>
@@ -658,8 +749,8 @@
     <recordLookups>
         <name>Get_Next_Game_Card</name>
         <label>Get Next Game Card</label>
-        <locationX>578</locationX>
-        <locationY>1574</locationY>
+        <locationX>776</locationX>
+        <locationY>1682</locationY>
         <assignNullValuesIfNoRecordsFound>false</assignNullValuesIfNoRecordsFound>
         <connector>
             <targetReference>Set_Game_Card_Hand</targetReference>
@@ -681,8 +772,8 @@
     <recordUpdates>
         <name>Update_Next_Game_Card_Pile_to_Hand</name>
         <label>Update Next Game Card Pile to Hand</label>
-        <locationX>578</locationX>
-        <locationY>1790</locationY>
+        <locationX>776</locationX>
+        <locationY>1898</locationY>
         <connector>
             <targetReference>Set_New_Turn_Fields</targetReference>
         </connector>
@@ -690,7 +781,7 @@
     </recordUpdates>
     <runInMode>SystemModeWithoutSharing</runInMode>
     <start>
-        <locationX>650</locationX>
+        <locationX>848</locationX>
         <locationY>0</locationY>
         <connector>
             <targetReference>Get_Game</targetReference>
@@ -725,6 +816,16 @@
         <isCollection>false</isCollection>
         <isInput>true</isInput>
         <isOutput>false</isOutput>
+    </variables>
+    <variables>
+        <name>isTurnAutoDone</name>
+        <dataType>Boolean</dataType>
+        <isCollection>false</isCollection>
+        <isInput>false</isInput>
+        <isOutput>false</isOutput>
+        <value>
+            <booleanValue>false</booleanValue>
+        </value>
     </variables>
     <variables>
         <name>message</name>

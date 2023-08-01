@@ -4,8 +4,8 @@
     <assignments>
         <name>Set_Turn_Fields</name>
         <label>Set Turn Fields</label>
-        <locationX>50</locationX>
-        <locationY>782</locationY>
+        <locationX>314</locationX>
+        <locationY>890</locationY>
         <assignmentItems>
             <assignToReference>Get_Turn.Status__c</assignToReference>
             <operator>Assign</operator>
@@ -28,20 +28,51 @@
             </value>
         </assignmentItems>
         <connector>
-            <targetReference>Update_Turn</targetReference>
+            <targetReference>Update_Game_Card</targetReference>
+        </connector>
+    </assignments>
+    <assignments>
+        <name>Set_Turn_Fields_Draw_Card</name>
+        <label>Set Turn Fields (Draw Card)</label>
+        <locationX>50</locationX>
+        <locationY>890</locationY>
+        <assignmentItems>
+            <assignToReference>Get_Turn.Status__c</assignToReference>
+            <operator>Assign</operator>
+            <value>
+                <stringValue>Drawn</stringValue>
+            </value>
+        </assignmentItems>
+        <connector>
+            <targetReference>Update_Turn_Status</targetReference>
         </connector>
     </assignments>
     <decisions>
-        <name>Button_Outcome</name>
-        <label>Button Outcome</label>
-        <locationX>182</locationX>
-        <locationY>674</locationY>
+        <name>Screen_Two_Outcome</name>
+        <label>Screen Two Outcome</label>
+        <locationX>314</locationX>
+        <locationY>782</locationY>
         <defaultConnector>
             <targetReference>Update_Turn</targetReference>
         </defaultConnector>
         <defaultConnectorLabel>Default Outcome</defaultConnectorLabel>
         <rules>
-            <name>DoDiscard</name>
+            <name>Screen_Two_Outcome_Draw_Card</name>
+            <conditionLogic>and</conditionLogic>
+            <conditions>
+                <leftValueReference>c1.isClicked</leftValueReference>
+                <operator>EqualTo</operator>
+                <rightValue>
+                    <booleanValue>true</booleanValue>
+                </rightValue>
+            </conditions>
+            <connector>
+                <targetReference>Set_Turn_Fields_Draw_Card</targetReference>
+            </connector>
+            <label>Draw Card</label>
+        </rules>
+        <rules>
+            <name>Screen_Two_Outcome_Discard</name>
             <conditionLogic>and</conditionLogic>
             <conditions>
                 <leftValueReference>unoTurnFooter.selectedAction</leftValueReference>
@@ -53,21 +84,28 @@
             <connector>
                 <targetReference>Set_Turn_Fields</targetReference>
             </connector>
-            <label>Do Discard</label>
+            <label>Discard</label>
         </rules>
     </decisions>
     <decisions>
         <name>Turn_Status</name>
         <label>Turn Status</label>
-        <locationX>336</locationX>
-        <locationY>458</locationY>
+        <locationX>534</locationX>
+        <locationY>566</locationY>
         <defaultConnector>
             <targetReference>s1</targetReference>
         </defaultConnector>
         <defaultConnectorLabel>Default Outcome</defaultConnectorLabel>
         <rules>
-            <name>Drawn</name>
-            <conditionLogic>and</conditionLogic>
+            <name>Next</name>
+            <conditionLogic>or</conditionLogic>
+            <conditions>
+                <leftValueReference>Get_Turn.Status__c</leftValueReference>
+                <operator>EqualTo</operator>
+                <rightValue>
+                    <stringValue>Next</stringValue>
+                </rightValue>
+            </conditions>
             <conditions>
                 <leftValueReference>Get_Turn.Status__c</leftValueReference>
                 <operator>EqualTo</operator>
@@ -78,7 +116,7 @@
             <connector>
                 <targetReference>s2</targetReference>
             </connector>
-            <label>Drawn</label>
+            <label>Next</label>
         </rules>
     </decisions>
     <environments>Default</environments>
@@ -109,10 +147,33 @@
     </processMetadataValues>
     <processType>Flow</processType>
     <recordLookups>
+        <name>Get_Next_Draw_Card</name>
+        <label>Get Next Draw Card</label>
+        <locationX>534</locationX>
+        <locationY>350</locationY>
+        <assignNullValuesIfNoRecordsFound>false</assignNullValuesIfNoRecordsFound>
+        <connector>
+            <targetReference>Get_Player_Hand_Game_Cards</targetReference>
+        </connector>
+        <filterLogic>and</filterLogic>
+        <filters>
+            <field>Pile__c</field>
+            <operator>EqualTo</operator>
+            <value>
+                <elementReference>Get_Turn.Game__r.DrawPile__c</elementReference>
+            </value>
+        </filters>
+        <getFirstRecordOnly>true</getFirstRecordOnly>
+        <object>GameCard__c</object>
+        <sortField>Sequence__c</sortField>
+        <sortOrder>Asc</sortOrder>
+        <storeOutputAutomatically>true</storeOutputAutomatically>
+    </recordLookups>
+    <recordLookups>
         <name>Get_Player_Hand_Game_Cards</name>
         <label>Get Player Hand Game Cards</label>
-        <locationX>336</locationX>
-        <locationY>350</locationY>
+        <locationX>534</locationX>
+        <locationY>458</locationY>
         <assignNullValuesIfNoRecordsFound>false</assignNullValuesIfNoRecordsFound>
         <connector>
             <targetReference>Turn_Status</targetReference>
@@ -132,11 +193,11 @@
     <recordLookups>
         <name>Get_Top_Game_Card</name>
         <label>Get Top Game Card</label>
-        <locationX>336</locationX>
+        <locationX>534</locationX>
         <locationY>242</locationY>
         <assignNullValuesIfNoRecordsFound>false</assignNullValuesIfNoRecordsFound>
         <connector>
-            <targetReference>Get_Player_Hand_Game_Cards</targetReference>
+            <targetReference>Get_Next_Draw_Card</targetReference>
         </connector>
         <filterLogic>and</filterLogic>
         <filters>
@@ -153,7 +214,7 @@
     <recordLookups>
         <name>Get_Turn</name>
         <label>Get Turn</label>
-        <locationX>336</locationX>
+        <locationX>534</locationX>
         <locationY>134</locationY>
         <assignNullValuesIfNoRecordsFound>false</assignNullValuesIfNoRecordsFound>
         <connector>
@@ -172,10 +233,35 @@
         <storeOutputAutomatically>true</storeOutputAutomatically>
     </recordLookups>
     <recordUpdates>
+        <name>Update_Drawn_Card</name>
+        <label>Update Drawn Card</label>
+        <locationX>50</locationX>
+        <locationY>1106</locationY>
+        <connector>
+            <isGoTo>true</isGoTo>
+            <targetReference>Get_Player_Hand_Game_Cards</targetReference>
+        </connector>
+        <filterLogic>and</filterLogic>
+        <filters>
+            <field>Id</field>
+            <operator>EqualTo</operator>
+            <value>
+                <elementReference>Get_Next_Draw_Card.Id</elementReference>
+            </value>
+        </filters>
+        <inputAssignments>
+            <field>Pile__c</field>
+            <value>
+                <elementReference>Get_Turn.Player__r.Hand__c</elementReference>
+            </value>
+        </inputAssignments>
+        <object>GameCard__c</object>
+    </recordUpdates>
+    <recordUpdates>
         <name>Update_Game_Card</name>
         <label>Update Game Card</label>
-        <locationX>182</locationX>
-        <locationY>1082</locationY>
+        <locationX>314</locationX>
+        <locationY>998</locationY>
         <connector>
             <targetReference>Update_Game_Top_Card_Fields</targetReference>
         </connector>
@@ -184,10 +270,10 @@
     <recordUpdates>
         <name>Update_Game_Top_Card_Fields</name>
         <label>Update Game Top Card Fields</label>
-        <locationX>182</locationX>
-        <locationY>1190</locationY>
+        <locationX>314</locationX>
+        <locationY>1106</locationY>
         <connector>
-            <targetReference>Create_Next_Turn</targetReference>
+            <targetReference>Update_Turn</targetReference>
         </connector>
         <filterLogic>and</filterLogic>
         <filters>
@@ -214,19 +300,43 @@
     <recordUpdates>
         <name>Update_Turn</name>
         <label>Update Turn</label>
-        <locationX>182</locationX>
-        <locationY>974</locationY>
+        <locationX>314</locationX>
+        <locationY>1364</locationY>
         <connector>
-            <targetReference>Update_Game_Card</targetReference>
+            <targetReference>Create_Next_Turn</targetReference>
         </connector>
         <inputReference>Get_Turn</inputReference>
+    </recordUpdates>
+    <recordUpdates>
+        <name>Update_Turn_Status</name>
+        <label>Update Turn Status</label>
+        <locationX>50</locationX>
+        <locationY>998</locationY>
+        <connector>
+            <targetReference>Update_Drawn_Card</targetReference>
+        </connector>
+        <filterLogic>and</filterLogic>
+        <filters>
+            <field>Id</field>
+            <operator>EqualTo</operator>
+            <value>
+                <elementReference>Get_Turn.Id</elementReference>
+            </value>
+        </filters>
+        <inputAssignments>
+            <field>Status__c</field>
+            <value>
+                <stringValue>Drawn</stringValue>
+            </value>
+        </inputAssignments>
+        <object>Turn__c</object>
     </recordUpdates>
     <runInMode>DefaultMode</runInMode>
     <screens>
         <name>s1</name>
         <label>s1</label>
-        <locationX>490</locationX>
-        <locationY>566</locationY>
+        <locationX>754</locationX>
+        <locationY>674</locationY>
         <allowBack>true</allowBack>
         <allowFinish>true</allowFinish>
         <allowPause>true</allowPause>
@@ -241,36 +351,25 @@
     <screens>
         <name>s2</name>
         <label>s2</label>
-        <locationX>182</locationX>
-        <locationY>566</locationY>
+        <locationX>314</locationX>
+        <locationY>674</locationY>
         <allowBack>true</allowBack>
         <allowFinish>true</allowFinish>
         <allowPause>true</allowPause>
         <connector>
-            <targetReference>Button_Outcome</targetReference>
+            <targetReference>Screen_Two_Outcome</targetReference>
         </connector>
-        <fields>
-            <name>dt4</name>
-            <fieldText>&lt;p&gt;&lt;strong style=&quot;font-size: 24px;&quot;&gt;Top Card&lt;/strong&gt;&lt;/p&gt;</fieldText>
-            <fieldType>DisplayText</fieldType>
-        </fields>
         <fields>
             <name>s2_Section1</name>
             <fieldType>RegionContainer</fieldType>
             <fields>
                 <name>s2_Section1_Column1</name>
                 <fieldType>Region</fieldType>
-                <inputParameters>
-                    <name>width</name>
-                    <value>
-                        <stringValue>4</stringValue>
-                    </value>
-                </inputParameters>
-                <isRequired>false</isRequired>
-            </fields>
-            <fields>
-                <name>s2_Section1_Column2</name>
-                <fieldType>Region</fieldType>
+                <fields>
+                    <name>dt4</name>
+                    <fieldText>&lt;p&gt;&lt;strong style=&quot;font-size: 24px;&quot;&gt;Top Card&lt;/strong&gt;&lt;/p&gt;</fieldText>
+                    <fieldType>DisplayText</fieldType>
+                </fields>
                 <fields>
                     <name>unoCard</name>
                     <extensionName>c:unoCard</extensionName>
@@ -288,18 +387,47 @@
                 <inputParameters>
                     <name>width</name>
                     <value>
-                        <stringValue>4</stringValue>
+                        <stringValue>6</stringValue>
                     </value>
                 </inputParameters>
                 <isRequired>false</isRequired>
             </fields>
             <fields>
-                <name>s2_Section1_Column3</name>
+                <name>s2_Section1_Column2</name>
                 <fieldType>Region</fieldType>
+                <fields>
+                    <name>dt5</name>
+                    <fieldText>&lt;p&gt;&lt;strong style=&quot;font-size: 24px; background-color: rgb(255, 255, 255); color: rgb(68, 68, 68);&quot;&gt;Draw Card&lt;/strong&gt;&lt;/p&gt;</fieldText>
+                    <fieldType>DisplayText</fieldType>
+                </fields>
+                <fields>
+                    <name>c1</name>
+                    <extensionName>c:clickable</extensionName>
+                    <fieldType>ComponentInstance</fieldType>
+                    <inputParameters>
+                        <name>label</name>
+                        <value>
+                            <stringValue>Click to Draw!</stringValue>
+                        </value>
+                    </inputParameters>
+                    <inputsOnNextNavToAssocScrn>UseStoredValues</inputsOnNextNavToAssocScrn>
+                    <isRequired>true</isRequired>
+                    <storeOutputAutomatically>true</storeOutputAutomatically>
+                    <visibilityRule>
+                        <conditionLogic>and</conditionLogic>
+                        <conditions>
+                            <leftValueReference>Get_Turn.Status__c</leftValueReference>
+                            <operator>EqualTo</operator>
+                            <rightValue>
+                                <stringValue>Next</stringValue>
+                            </rightValue>
+                        </conditions>
+                    </visibilityRule>
+                </fields>
                 <inputParameters>
                     <name>width</name>
                     <value>
-                        <stringValue>4</stringValue>
+                        <stringValue>6</stringValue>
                     </value>
                 </inputParameters>
                 <isRequired>false</isRequired>
@@ -358,8 +486,8 @@
     <screens>
         <name>s3</name>
         <label>s3</label>
-        <locationX>182</locationX>
-        <locationY>1406</locationY>
+        <locationX>314</locationX>
+        <locationY>1580</locationY>
         <allowBack>true</allowBack>
         <allowFinish>true</allowFinish>
         <allowPause>true</allowPause>
@@ -372,7 +500,7 @@
         <showHeader>true</showHeader>
     </screens>
     <start>
-        <locationX>210</locationX>
+        <locationX>408</locationX>
         <locationY>0</locationY>
         <connector>
             <targetReference>Get_Turn</targetReference>
@@ -382,8 +510,8 @@
     <subflows>
         <name>Create_Next_Turn</name>
         <label>Create Next Turn</label>
-        <locationX>182</locationX>
-        <locationY>1298</locationY>
+        <locationX>314</locationX>
+        <locationY>1472</locationY>
         <connector>
             <targetReference>s3</targetReference>
         </connector>

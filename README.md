@@ -1,4 +1,11 @@
-# Next Week
+# Next Show
+
+- Reverse
+- Shuffle
+- UI for Turns
+- Notifications?
+
+# 2023-08-01
 
 - Draw Pile
 - Discarded?

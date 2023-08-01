@@ -84,9 +84,10 @@
         <excludeButtons>MassChangeOwner</excludeButtons>
         <excludeButtons>New</excludeButtons>
         <fields>NAME</fields>
-        <fields>Card__c</fields>
         <fields>Pile__c</fields>
         <fields>Sequence__c</fields>
+        <fields>Color__c</fields>
+        <fields>Value__c</fields>
         <relatedList>GameCard__c.Game__c</relatedList>
         <sortField>Sequence__c</sortField>
         <sortOrder>Asc</sortOrder>
@@ -95,8 +96,10 @@
         <excludeButtons>MassChangeOwner</excludeButtons>
         <excludeButtons>New</excludeButtons>
         <fields>NAME</fields>
+        <fields>Status__c</fields>
         <fields>Player__c.NAME</fields>
         <fields>Player__c.User__c</fields>
+        <fields>OBJECT_ID</fields>
         <relatedList>Turn__c.Game__c</relatedList>
         <sortField>NAME</sortField>
         <sortOrder>Desc</sortOrder>
@@ -107,7 +110,7 @@
     <showRunAssignmentRulesCheckbox>false</showRunAssignmentRulesCheckbox>
     <showSubmitAndAttachButton>false</showSubmitAndAttachButton>
     <summaryLayout>
-        <masterLabel>00h010000010Jof</masterLabel>
+        <masterLabel>00h53000003UEEr</masterLabel>
         <sizeX>4</sizeX>
         <sizeY>0</sizeY>
         <summaryLayoutStyle>Default</summaryLayoutStyle>

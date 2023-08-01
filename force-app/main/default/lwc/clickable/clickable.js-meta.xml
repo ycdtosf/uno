@@ -2,13 +2,14 @@
 <LightningComponentBundle xmlns="http://soap.sforce.com/2006/04/metadata">
     <apiVersion>58.0</apiVersion>
     <isExposed>true</isExposed>
-    <masterLabel>Uno Card</masterLabel>
+    <masterLabel>Clickable</masterLabel>
     <targets>
         <target>lightning__FlowScreen</target>
     </targets>
     <targetConfigs>
         <targetConfig targets="lightning__FlowScreen">
-            <property name="gameCard" type="@salesforce/schema/GameCard__c" label="Game Card" role="inputOnly" />
+            <property name="label" type="String" label="Label" role="inputOnly" description="Text displayed in the middle of the component." />
+            <property name="isClicked" type="Boolean" label="Clicked?" role="outputOnly" description="Indicates component is clicked." />
         </targetConfig>
     </targetConfigs>
 </LightningComponentBundle>
